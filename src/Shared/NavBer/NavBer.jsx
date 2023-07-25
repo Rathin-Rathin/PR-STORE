@@ -2,17 +2,21 @@ import { NavLink } from 'react-router-dom';
 import logo from '../../assets/logo.jpg';
 const NavBer = () => {
     const listItems = <>
-        <NavLink to=""
+        <NavLink to="/home"
             className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "text-blue-600" : "font-bold"
+                isPending ? "pending" : isActive ? "text-blue-600 font-bold" : "font-bold"
+            }><a className='px-2 text-lg'>Home</a></NavLink>
+        <NavLink to="/storeIn"
+            className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "text-blue-600 font-bold" : "font-bold"
             }><a className='px-2 text-lg'>Store In</a></NavLink>
         <NavLink to=""
             className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "text-blue-600" : "font-bold"
+                isPending ? "pending" : isActive ? "text-blue-600 font-bold" : "font-bold"
             }><a className='px-2 text-lg'>Store Out</a></NavLink>
         <NavLink to=""
             className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "text-blue-600" : "font-bold"
+                isPending ? "pending" : isActive ? "text-blue-600 font-bold" : "font-bold"
             }><a className='px-2 text-lg'>Add item</a></NavLink>
     </>
     return (
