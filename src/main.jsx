@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider, } from "react-router-dom";
 import Home from './Pages/Home/Home';
 import StoreIn from './Pages/StoreIn/StoreIn';
 import Main from './Layout/Main';
+import AddItems from './Pages/AddItems/AddItems';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,9 @@ const router = createBrowserRouter([
       {
         path: 'storeIn',
         element:<StoreIn/>
+      }, {
+        path: 'addItems',
+        element:<AddItems/>
       }
     ]
   },

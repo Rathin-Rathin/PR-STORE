@@ -14,10 +14,14 @@ const NavBer = () => {
             className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "text-blue-600 font-bold" : "font-bold"
             }><a className='px-2 text-lg'>Store Out</a></NavLink>
-        <NavLink to=""
+        <NavLink to="/addItems"
             className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "text-blue-600 font-bold" : "font-bold"
             }><a className='px-2 text-lg'>Add item</a></NavLink>
+        <NavLink to=""
+            className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "text-blue-600 font-bold" : "font-bold"
+            }><a className='px-2 text-lg'>please order</a></NavLink>
     </>
     return (
         <div>
