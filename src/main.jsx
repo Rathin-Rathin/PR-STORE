@@ -6,6 +6,8 @@ import Home from './Pages/Home/Home';
 import StoreIn from './Pages/StoreIn/StoreIn';
 import Main from './Layout/Main';
 import AddItems from './Pages/AddItems/AddItems';
+import ItemProvider from './Provider/ItemProvider';
+import OrderItems from './Pages/OrderItems/OrderItems';
 
 const router = createBrowserRouter([
   {
@@ -14,24 +16,29 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element:<Home/>
-     },
+        element: <Home />
+      },
       {
         path: '/home',
-        element:<Home/>
+        element: <Home />
       },
       {
         path: 'storeIn',
-        element:<StoreIn/>
+        element: <StoreIn />
       }, {
         path: 'addItems',
-        element:<AddItems/>
+        element: <AddItems />
+      }, {
+        path: 'orderItems',
+        element:<OrderItems/>
       }
     ]
   },
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>,
+    <ItemProvider>
+      <RouterProvider router={router}/>
+    </ItemProvider>
+  </React.StrictMode>
 )

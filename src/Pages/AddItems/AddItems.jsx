@@ -34,7 +34,7 @@ const AddItems = () => {
     }
     return (
         <form onSubmit={handleSubmit} id="myForm" className="mt-6 md:w-2/3 mx-auto">
-           
+           <h1 className="text-blue-400 text-2xl ">Add New Items</h1>
             <div className="pt-3 grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                     <p>Product name</p>
@@ -42,7 +42,7 @@ const AddItems = () => {
                 </div>
                 <div>
                     <p>Image Link</p>
-                    <input className="border  border-blue-600 rounded shadow-md  outline-none my-2 p-2 w-full" type="url" placeholder="Photo link" name="photo" id="photo" required />
+                    <input className="border  border-blue-600 rounded shadow-md  outline-none my-2 p-2 w-full" type="url" placeholder="Photo link" name="photo" id="photo" />
                 </div>
                 <div>
                     <p>Quantity</p>
