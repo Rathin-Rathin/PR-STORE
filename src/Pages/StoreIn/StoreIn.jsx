@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { ItemContext } from "../../Provider/ItemProvider";
+import Swal from "sweetalert2";
 
 
 const StoreIn = () => {
@@ -28,6 +29,13 @@ const StoreIn = () => {
             type,
             formattedDate
         }
+        // New quantity
+        const newQnt = parseInt(searchItem?.quantity) + qnt;
+        const updatedQuantity = {
+            newQnt
+        }
+        const id = searchItem?._id;
+        // Set inStore item in history 
         fetch(`http://localhost:5000/history/`, {
             method: 'POST',
             headers: { 'Content-type': 'application/json' },
@@ -35,7 +43,26 @@ const StoreIn = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                
+
+            })
+        // Update product quantity
+        fetch(`http://localhost:5000/storeIn/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-type': 'application/json' },
+            body: JSON.stringify(updatedQuantity)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: `Updated ${itemName} quantity`,
+                        showConfirmButton: false,
+                        timer: 1000
+                      })
+                }
 
             })
         document.getElementById('myForm').reset();
@@ -88,7 +115,7 @@ const StoreIn = () => {
                                         key={i}
                                         data={data}
                                     >
-                                        <th>{i+1}</th>
+                                        <th>{i + 1}</th>
                                         <td>{data?.itemName}</td>
                                         <td>{data?.qnt}<small>{data?.type}</small></td>
                                         <td className="">{data?.formattedDate}</td>
