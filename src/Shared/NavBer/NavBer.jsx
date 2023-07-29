@@ -10,23 +10,23 @@ const NavBer = () => {
         <NavLink to="/home"
             className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "text-blue-400 font-bold" : "font-bold text-gray-600"
-            }><a className='px-2 text-lg  border-e-2 border-blue-500'>Home</a></NavLink>
+            }><p className='px-2 text-lg  border-e-2 border-black'>Home</p></NavLink>
         <NavLink to="/storeIn"
             className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "text-blue-400 font-bold" : "font-bold text-gray-600"
-            }><a className='px-2 text-lg border-e-2 border-blue-500'>Store In</a></NavLink>
-        <NavLink to=""
+            }><p className='px-2 text-lg border-e-2 border-black'>StoreIn</p></NavLink>
+        <NavLink to="/storeOut"
             className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "text-blue-400 font-bold" : "font-bold text-gray-600"
-            }><a className='px-2 text-lg border-e-2 border-blue-500'>Store Out</a></NavLink>
+            }><p className='px-2 text-lg border-e-2 border-black'>StoreOut</p></NavLink>
         <NavLink to="/addItems"
             className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "text-blue-400 font-bold" : "font-bold text-gray-600"
-            }><a className='px-2 text-lg border-e-2 border-blue-500'>Add item</a></NavLink>
+            }><p className='px-2 text-lg border-e-2 border-black'>Add item</p></NavLink>
         <NavLink to="/orderItems"
             className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "text-blue-400 font-bold" : "font-bold text-gray-600"
-            }><a className='px-2 text-lg pt-1 flex items-center justify-center'><AiOutlineShoppingCart /> <sup className='text-rose-600 font-bold'>{orderItem.length}</sup></a></NavLink>
+            }><p className='px-2 text-lg pt-1 flex items-center justify-center'><AiOutlineShoppingCart /> <sup className='text-rose-600 font-bold'>{orderItem.length}</sup></p></NavLink>
     </>
     return (
         <div>
