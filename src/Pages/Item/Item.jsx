@@ -2,7 +2,7 @@
 
 const Item = ({item}) => {
     const { name, photo, quantity, type } = item;
-   
+    
     return (
         <div className=" shadow-md rounded text-center">
             <div className="mb-3 pt-1">

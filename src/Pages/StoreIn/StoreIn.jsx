@@ -1,16 +1,14 @@
 import { useContext, useEffect, useState } from "react";
 import { ItemContext } from "../../Provider/ItemProvider";
 import Swal from "sweetalert2";
-
+import empty from "../../assets/empty.png";
 
 const StoreIn = () => {
-    const currentDate = new Date();
-    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true };
-    const formattedDate = currentDate.toLocaleString('en-US', options);
-
     const [product, setProduct] = useState('');
     const [inHistory, setInHistory] = useState();
-    const { items } = useContext(ItemContext);
+
+    const { items, handleDelete, formattedDate } = useContext(ItemContext);
+    
     const searchItem = items?.find(data => data.name === product);
     const itemName = searchItem?.name;
     useEffect(() => {
@@ -43,7 +41,7 @@ const StoreIn = () => {
         })
             .then(res => res.json())
             .then(data => {
-                
+
 
             })
         // Update product quantity
@@ -61,7 +59,7 @@ const StoreIn = () => {
                         title: `Updated ${itemName} quantity`,
                         showConfirmButton: false,
                         timer: 1000
-                      })
+                    })
                 }
 
             })
@@ -92,14 +90,18 @@ const StoreIn = () => {
                     </div>
                 </div>
             </form>
-            <div className="md:w-1/2  shadow-md p-2">
+            <div className="md:w-1/2 shadow-md p-2">
                 <div className="flex justify-between  border-b-blue-500 border-b">
                     <h1 className="text-blue-400 font-bold text-xl mb-3">StoreIn History</h1>
-                    <button className="cursor-pointer  bg-blue-500 text-white p-1">Delete History</button>
+                    <button onClick={() => handleDelete('deleteInHistory')} className="cursor-pointer  bg-blue-500 text-white p-1">Delete History</button>
                 </div>
                 <div>
-                    <div className="overflow-x-auto mt-3">
-                        <table className="table text-center">
+                    <div className="overflow-x-auto h-[60vh]  mt-3">
+                        {inHistory?.length === 0 ? <div className="">
+                            <div className="mt-6 mx-auto w-full ">
+                                <img className="w-[100px] mx-auto" src={empty} alt="empty img" />
+                                <h1 className="font-bold text-2xl text-center text-blue-400">No history available</h1></div>
+                        </div>:<table className="table text-center">
                             {/* head */}
                             <thead className="bg-blue-300 text-blue-600">
                                 <tr>
@@ -109,21 +111,27 @@ const StoreIn = () => {
                                     <th>StoreIn Date</th>
                                 </tr>
                             </thead>
+
                             <tbody>
-                                {
-                                    inHistory?.map((data, i) => <tr
-                                        key={i}
-                                        data={data}
-                                    >
-                                        <th>{i + 1}</th>
-                                        <td>{data?.itemName}</td>
-                                        <td>{data?.qnt}<small>{data?.type}</small></td>
-                                        <td className="">{data?.formattedDate}</td>
-                                    </tr>)
-                                }
+                                <>
+
+                                    {
+                                        inHistory?.map((data, i) => <tr
+                                            key={i}
+                                            data={data}
+                                        >
+
+                                            <th>{i + 1}</th>
+                                            <td>{data?.itemName}</td>
+                                            <td>{data?.qnt}<small>{data?.type}</small></td>
+                                            <td className="">{data?.formattedDate}</td>
+                                        </tr>)
+                                    }
+
+                                </>
                             </tbody>
 
-                        </table>
+                        </table>}
                     </div>
                 </div>
             </div>
