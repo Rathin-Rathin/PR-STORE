@@ -34,7 +34,7 @@ const StoreIn = () => {
         }
         const id = searchItem?._id;
         // Set inStore item in history 
-        fetch(`http://localhost:5000/history/`, {
+        fetch(`http://localhost:5000/storeInHistory/`, {
             method: 'POST',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(storeInItem)
@@ -81,7 +81,7 @@ const StoreIn = () => {
                         <div className="">
                             <input type="number" name="qnt" id="qnt" required placeholder="New quantity " className="border border-blue-500 outline-none text-lg font-bold px-2 w-1/2 md:w-[150px] h-[100px] " />
                             <p>
-                                <input type="text" className="border  border-blue-500 outline-none px-2 mt-2 w-1/2 md:w-[150px]" name="type" id="type" placeholder="order type (kg,pkt)" required />
+                                <input type="text" defaultValue={searchItem?.type} className="border  border-blue-500 outline-none px-2 mt-2 w-1/2 md:w-[150px]" name="type" id="type" placeholder="order type (kg,pkt)" required />
                             </p>
                         </div>
                     </div>

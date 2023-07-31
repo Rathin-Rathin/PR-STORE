@@ -17,7 +17,7 @@ const NavBer = () => {
             }><p className='px-2 text-lg border-e-2 border-black'>StoreIn</p></NavLink>
         <NavLink to="/storeOut"
             className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "text-blue-400 font-bold" : "font-bold text-gray-600"
+                isPending ? "pending" : isActive ? "text-green-400 font-bold" : "font-bold text-gray-600"
             }><p className='px-2 text-lg border-e-2 border-black'>StoreOut</p></NavLink>
         <NavLink to="/addItems"
             className={({ isActive, isPending }) =>

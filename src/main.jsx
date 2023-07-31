@@ -8,6 +8,7 @@ import Main from './Layout/Main';
 import AddItems from './Pages/AddItems/AddItems';
 import ItemProvider from './Provider/ItemProvider';
 import OrderItems from './Pages/OrderItems/OrderItems';
+import StoreOut from './Pages/StoreOut/StoreOut';
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       }, {
         path: 'orderItems',
         element:<OrderItems/>
+      },
+      {
+        path:'storeOut',
+        element:<StoreOut/>
       }
     ]
   },
