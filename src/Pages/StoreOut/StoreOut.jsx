@@ -2,7 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { ItemContext } from "../../Provider/ItemProvider";
 import empty from "../../assets/empty.png";
-
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 const StoreOut = () => {
     const [product, setProduct] = useState('');
     const [outHistory, setOutHistory] = useState();
@@ -73,7 +74,8 @@ const StoreOut = () => {
         document.getElementById('myForm').reset();
     }
     return (
-        <div className="mt-3 md:flex justify-around">
+        <>
+         <div className="mt-3 md:flex justify-around">
             <form onSubmit={handleUpdate} id="myForm" className="shadow-md p-2 mb-6">
                 <h1 className="text-green-400 font-bold text-xl mb-3">Out items from store</h1>
                 <div className="">
@@ -144,7 +146,9 @@ const StoreOut = () => {
                     </div>
                 </div>
             </div>
-        </div>
+            </div>
+            <ToastContainer className="absolute top-0 right-0"/>
+        </>
     );
 };
 

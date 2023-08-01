@@ -4,21 +4,22 @@ import { useContext } from 'react';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { ItemContext } from '../../Provider/ItemProvider';
 const NavBer = () => {
-    const {items,orderItem } = useContext(ItemContext);
-    
+    const { items, orderItem } = useContext(ItemContext);
+
     const listItems = <>
         <NavLink to="/home"
             className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "text-blue-400 font-bold" : "font-bold text-gray-600"
-            }><p className='px-2 text-lg  border-e-2 border-black'>Home</p></NavLink>
-        <NavLink to="/storeIn"
-            className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "text-blue-400 font-bold" : "font-bold text-gray-600"
-            }><p className='px-2 text-lg border-e-2 border-black'>StoreIn</p></NavLink>
+            }><p className='px-2 text-lg  border-e-2 border-black'>Store</p></NavLink>
+
         <NavLink to="/storeOut"
             className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "text-green-400 font-bold" : "font-bold text-gray-600"
             }><p className='px-2 text-lg border-e-2 border-black'>StoreOut</p></NavLink>
+        <NavLink to="/storeIn"
+            className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "text-blue-400 font-bold" : "font-bold text-gray-600"
+            }><p className='px-2 text-lg border-e-2 border-black'>StoreIn</p></NavLink>
         <NavLink to="/addItems"
             className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "text-blue-400 font-bold" : "font-bold text-gray-600"
