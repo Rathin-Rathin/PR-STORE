@@ -35,7 +35,7 @@ const OrderItems = () => {
                         <tr>
                             <th>#</th>
                             <th>Product name</th>
-                            <th>Quantity</th>
+                            <th>Present stock</th>
                             <th>Check</th>
                         </tr>
                     </thead>
@@ -51,7 +51,7 @@ const OrderItems = () => {
 
                                     <th>{i + 1}</th>
                                     <td>{data?.name}</td>
-                                    <td>{data?.qnt}<small>{data?.type}</small></td>
+                                    <td>{data?.quantity}<small>{data?.type}</small></td>
                                     <td>
                                         <input type="checkbox" name="checkbox" />
                                     </td>
