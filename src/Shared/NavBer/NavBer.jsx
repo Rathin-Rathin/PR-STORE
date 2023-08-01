@@ -30,7 +30,7 @@ const NavBer = () => {
             }><p className='px-2 text-lg pt-1 flex items-center md:justify-center'><AiOutlineShoppingCart /> <sup className='text-rose-600 font-bold'>{orderItem.length}</sup></p></NavLink>
     </>
     return (
-        <div>
+        <div className=''>
             <div className="hide-on-print navbar lg:flex justify-between shadow-lg">
                 <div className="navbar-start flex gap-6 md:gap-1">
                     <div className="dropdown ">

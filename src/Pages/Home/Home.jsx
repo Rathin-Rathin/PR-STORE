@@ -5,9 +5,11 @@ import AllItems from "../AllItems/AllItems";
 
 const Home = () => {
     return (
-        
-        <AllItems />
-      
+        <div className="mt-3">
+
+            <AllItems />
+
+        </div>
     );
 };
 

@@ -1,4 +1,4 @@
-import { useContext} from "react";
+import { useContext } from "react";
 import { ItemContext } from "../../Provider/ItemProvider";
 import empty from "../../assets/empty.png";
 import logo from "../../assets/logo.jpg";
@@ -8,32 +8,33 @@ const OrderItems = () => {
     const handlePrint = () => {
         const contentToPrint = document.getElementById('print-content');
         window.print(contentToPrint)
-      };
+    };
     return (
-        <>
-            
+        <div className="mt-3 z-1">
+
             {orderItem?.length === 0 && <div className="flex justify-center items-center md:h-[90vh]">
-                <div className="mt-6">
+                <div className="mt-3">
                     <img className="w-[200px] mx-auto" src={empty} alt="empty img" />
                     <h1 className="font-bold text-2xl md:text-4xl text-blue-400">No order for restaurant</h1></div>
 
             </div>}
 
-            <div id="print-content"  className="overflow-x-auto md:w-1/2 mx-auto mt-3">
+            <div id="print-content" className="overflow-x-auto md:w-1/2 mx-auto mt-3">
                 <div className="text-center leading-none mb-2 ">
                     <h1 className="text-xl font-bold">Hotel ProgatiInn ltd</h1>
                     <div className="flex justify-center font-semibold my-2 items-center gap-2">
                         <img src={logo} className="h-10 w-10 " alt="logo" />
                         <h2 className="">Restaurant order for store</h2>
                         <p>{formattedDate}</p>
-                        <button  onClick={handlePrint}><AiFillPrinter className="hide-on-print h-10 w-10 text-blue-900" /></button>
+                        <button onClick={handlePrint}><AiFillPrinter className="hide-on-print h-10 w-10 text-blue-900" /></button>
                     </div>
                 </div>
-                <table  className="table text-center md:border   border-blue-500 border-t-0 font-bold">
+                <table className="table text-center md:border   border-blue-500 border-t-0 font-bold">
                     {/* head */}
                     <thead className="bg-blue-300 md:text-lg  text-blue-600">
                         <tr>
                             <th>#</th>
+                            <th className="hide-on-print">Photo</th>
                             <th>Product name</th>
                             <th>Present stock</th>
                             <th>Check</th>
@@ -50,6 +51,7 @@ const OrderItems = () => {
                                 >
 
                                     <th>{i + 1}</th>
+                                    <td className="hide-on-print"><img className="h-10 w-10 " src={data?.photo} alt="" /></td>
                                     <td>{data?.name}</td>
                                     <td>{data?.quantity}<small>{data?.type}</small></td>
                                     <td>
@@ -63,7 +65,7 @@ const OrderItems = () => {
 
                 </table>
             </div>
-        </>
+        </div>
     );
 };
 
