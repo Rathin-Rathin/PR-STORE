@@ -13,7 +13,7 @@ const StoreOut = () => {
     const searchItem = items?.find(data => data.name === product);
     const itemName = searchItem?.name;
     useEffect(() => {
-        fetch(`http://localhost:5000/outHistory/`)
+        fetch(`https://pr-store-server.vercel.app/outHistory/`)
             .then(res => res.json())
             .then(data => setOutHistory(data))
     }, [searchItem])
@@ -30,7 +30,7 @@ const StoreOut = () => {
         }
         // New quantity
         const newQnt = parseInt(searchItem?.quantity) - qnt;
-        
+
         const updatedQuantity = {
             newQnt
         }
@@ -38,7 +38,7 @@ const StoreOut = () => {
         // Set outStore item in history 
         if (qnt <= searchItem?.quantity) {
             setWarning(' ')
-            fetch(`http://localhost:5000/storeOutHistory/`, {
+            fetch(`https://pr-store-server.vercel.app/storeOutHistory/`, {
                 method: 'POST',
                 headers: { 'Content-type': 'application/json' },
                 body: JSON.stringify(storeOutItem)
@@ -49,7 +49,7 @@ const StoreOut = () => {
 
                 })
             // Update product quantity
-            fetch(`http://localhost:5000/storeOut/${id}`, {
+            fetch(`https://pr-store-server.vercel.app/storeOut/${id}`, {
                 method: 'PUT',
                 headers: { 'Content-type': 'application/json' },
                 body: JSON.stringify(updatedQuantity)
@@ -75,79 +75,79 @@ const StoreOut = () => {
     }
     return (
         <>
-         <div className="mt-3 md:flex justify-around">
-            <form onSubmit={handleUpdate} id="myForm" className="shadow-md p-2 mb-6">
-                <h1 className="text-green-400 font-bold text-xl mb-3">Out items from store</h1>
-                <div className="">
-                    <div>
-                        <input onChange={(event) => setProduct(event.target.value)} type="text" required className="border border-green-500 mb-3 outline-none p-1 w-full" name="search" id="search" placeholder="Search by name.Don't spelling mistake." />
-                    </div>
-                    <div className="flex justify-center items-center mb-3 gap-2">
+            <div className="mt-3 md:flex justify-around">
+                <form onSubmit={handleUpdate} id="myForm" className="shadow-md p-2 mb-6">
+                    <h1 className="text-green-400 font-bold text-xl mb-3">Out items from store</h1>
+                    <div className="">
                         <div>
-                            <img className="w-[100px] h-[100px] md:w-[200px] md:h-[200px] md:mx-auto border border-green-500" src={searchItem?.photo} alt="loading" />
-                            <p className="font-bold "><span className="text-lg">Name: </span>{searchItem?.name}</p>
-                            <p className="font-semibold text-md"><span className="text-lg">In store: </span>{searchItem?.quantity}{searchItem?.type}</p>
-                            <small className="text-red-500 font-bold italic">{warning}</small>
+                            <input onChange={(event) => setProduct(event.target.value)} type="text" required className="border border-green-500 mb-3 outline-none p-1 w-full" name="search" id="search" placeholder="Search by name.Don't spelling mistake." />
                         </div>
-                        <div className="">
-                            <input type="number" name="qnt" id="qnt" required placeholder="New quantity " className="border border-green-500 outline-none text-lg font-bold px-2 w-1/2 md:w-[150px] h-[100px] " />
-                            <p>
-                                <input type="text" defaultValue={searchItem?.type} className="border  border-green-500 outline-none px-2 mt-2 w-1/2 md:w-[150px]" name="type" id="type" placeholder="order type (kg,pkt)" required />
-                            </p>
+                        <div className="flex justify-center items-center mb-3 gap-2">
+                            <div>
+                                <img className="w-[100px] h-[100px] md:w-[200px] md:h-[200px] md:mx-auto border border-green-500" src={searchItem?.photo} alt="loading" />
+                                <p className="font-bold "><span className="text-lg">Name: </span>{searchItem?.name}</p>
+                                <p className="font-semibold text-md"><span className="text-lg">In store: </span>{searchItem?.quantity}{searchItem?.type}</p>
+                                <small className="text-red-500 font-bold italic">{warning}</small>
+                            </div>
+                            <div className="">
+                                <input type="number" name="qnt" id="qnt" required placeholder="New quantity " className="border border-green-500 outline-none text-lg font-bold px-2 w-1/2 md:w-[150px] h-[100px] " />
+                                <p>
+                                    <input type="text" defaultValue={searchItem?.type} className="border  border-green-500 outline-none px-2 mt-2 w-1/2 md:w-[150px]" name="type" id="type" placeholder="order type (kg,pkt)" required />
+                                </p>
+                            </div>
+                        </div>
+                        <div >
+                            <input className="cursor-pointer w-full bg-green-500 text-white py-2" type="submit" value="Out from store" />
                         </div>
                     </div>
-                    <div >
-                        <input className="cursor-pointer w-full bg-green-500 text-white py-2" type="submit" value="Out from store" />
+                </form>
+                <div className="md:w-1/2 shadow-md p-2">
+                    <div className="flex justify-between  border-b-green-500 border-b">
+                        <h1 className="text-green-400 font-bold text-xl mb-3">Store out History</h1>
+                        <button onClick={() => handleDelete('deleteOutHistory')} className="cursor-pointer  bg-green-500 text-white p-1">Delete History</button>
                     </div>
-                </div>
-            </form>
-            <div className="md:w-1/2 shadow-md p-2">
-                <div className="flex justify-between  border-b-green-500 border-b">
-                    <h1 className="text-green-400 font-bold text-xl mb-3">Store out History</h1>
-                    <button onClick={() => handleDelete('deleteOutHistory')} className="cursor-pointer  bg-green-500 text-white p-1">Delete History</button>
-                </div>
-                <div>
-                    <div className="overflow-x-auto h-[60vh]  mt-3">
-                        {outHistory?.length === 0 ? <div className="">
-                            <div className="mt-6 mx-auto w-full ">
-                                <img className="w-[100px] mx-auto" src={empty} alt="empty img" />
-                                <h1 className="font-bold text-2xl text-center text-green-400">No history available</h1></div>
-                        </div> : <table className="table text-center">
-                            {/* head */}
-                            <thead className="bg-green-300 text-green-600">
-                                <tr>
-                                    <th>#</th>
-                                    <th>Product name</th>
-                                    <th>Quantity</th>
-                                    <th>Store out Date</th>
-                                </tr>
-                            </thead>
+                    <div>
+                        <div className="overflow-x-auto h-[60vh]  mt-3">
+                            {outHistory?.length === 0 ? <div className="">
+                                <div className="mt-6 mx-auto w-full ">
+                                    <img className="w-[100px] mx-auto" src={empty} alt="empty img" />
+                                    <h1 className="font-bold text-2xl text-center text-green-400">No history available</h1></div>
+                            </div> : <table className="table text-center">
+                                {/* head */}
+                                <thead className="bg-green-300 text-green-600">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Product name</th>
+                                        <th>Quantity</th>
+                                        <th>Store out Date</th>
+                                    </tr>
+                                </thead>
 
-                            <tbody>
-                                <>
+                                <tbody>
+                                    <>
 
-                                    {
-                                        outHistory?.map((data, i) => <tr
-                                            key={i}
-                                            data={data}
-                                        >
+                                        {
+                                            outHistory?.map((data, i) => <tr
+                                                key={i}
+                                                data={data}
+                                            >
 
-                                            <th>{i + 1}</th>
-                                            <td>{data?.itemName}</td>
-                                            <td>{data?.qnt}<small>{data?.type}</small></td>
-                                            <td className="">{data?.formattedDate}</td>
-                                        </tr>)
-                                    }
+                                                <th>{i + 1}</th>
+                                                <td>{data?.itemName}</td>
+                                                <td>{data?.qnt}<small>{data?.type}</small></td>
+                                                <td className="">{data?.formattedDate}</td>
+                                            </tr>)
+                                        }
 
-                                </>
-                            </tbody>
+                                    </>
+                                </tbody>
 
-                        </table>}
+                            </table>}
+                        </div>
                     </div>
                 </div>
             </div>
-            </div>
-            <ToastContainer className="absolute top-0 right-0"/>
+            <ToastContainer className="absolute top-0 right-0" />
         </>
     );
 };

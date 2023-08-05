@@ -13,7 +13,7 @@ const StoreIn = () => {
     const searchItem = items?.find(data => data.name === product);
     const itemName = searchItem?.name;
     useEffect(() => {
-        fetch(`http://localhost:5000/inHistory/`)
+        fetch(`https://pr-store-server.vercel.app/inHistory/`)
             .then(res => res.json())
             .then(data => setInHistory(data))
     }, [searchItem])
@@ -35,7 +35,7 @@ const StoreIn = () => {
         }
         const id = searchItem?._id;
         // Set inStore item in history 
-        fetch(`http://localhost:5000/storeInHistory/`, {
+        fetch(`https://pr-store-server.vercel.app/storeInHistory/`, {
             method: 'POST',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(storeInItem)
@@ -46,7 +46,7 @@ const StoreIn = () => {
 
             })
         // Update product quantity
-        fetch(`http://localhost:5000/storeIn/${id}`, {
+        fetch(`https://pr-store-server.vercel.app/storeIn/${id}`, {
             method: 'PUT',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(updatedQuantity)
@@ -139,7 +139,7 @@ const StoreIn = () => {
                     </div>
                 </div>
             </div>
-            <ToastContainer className="absolute top-0 right-0"/>
+            <ToastContainer className="absolute top-0 right-0" />
         </>
     );
 };

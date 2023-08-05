@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ItemContext } from "../../Provider/ItemProvider";
 import empty from "../../assets/empty.png";
 import logo from "../../assets/logo.jpg";
@@ -49,14 +49,15 @@ const OrderItems = () => {
                                     key={i}
                                     data={data}
                                 >
-
                                     <th>{i + 1}</th>
                                     <td className="hide-on-print"><img className="h-10 w-10 " src={data?.photo} alt="" /></td>
                                     <td>{data?.name}</td>
                                     <td>{data?.quantity}<small>{data?.type}</small></td>
                                     <td>
-                                        <input type="checkbox" name="checkbox" />
+                                        <input type="checkbox" id="checked" name="checkbox" />
                                     </td>
+
+
                                 </tr>)
                             }
 

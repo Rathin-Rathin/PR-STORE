@@ -5,7 +5,7 @@ import Item from "../Item/Item";
 const AllItems = () => {
     const [items, setItems] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5000/allItems`)
+        fetch(`https://pr-store-server.vercel.app/allItems`)
             .then(res => res.json())
             .then(data => setItems(data))
 
@@ -19,7 +19,7 @@ const AllItems = () => {
                 ></Item>)
             }
         </div>
-      
+
     );
 };
 

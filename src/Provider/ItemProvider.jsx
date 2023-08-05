@@ -10,10 +10,10 @@ const ItemProvider = ({ children }) => {
     const formattedDate = currentDate.toLocaleString('en-US', options);
     const [items, setItems] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5000/allItems`)
+        fetch(`https://pr-store-server.vercel.app/allItems`)
             .then(res => res.json())
             .then(data => setItems(data))
-        
+
     }, [items])
     //Handle Delete
     const handleDelete = (key) => {
@@ -30,14 +30,14 @@ const ItemProvider = ({ children }) => {
                 confirmButtonText: 'Yes, delete it!',
             }).then((result) => {
                 if (result.isConfirmed) {
-                    fetch(`http://localhost:5000/${key}`, {
+                    fetch(`https://pr-store-server.vercel.app/${key}`, {
                         method: 'DELETE',
                         headers: { 'Content-type': 'application/json' },
                     })
                         .then(res => res.json())
                         .then(data => {
-    
-    
+
+
                         })
                     Swal.fire(
                         'Deleted!',
@@ -45,21 +45,21 @@ const ItemProvider = ({ children }) => {
                         'success'
                     )
                 }
-    
+
             })
         } else {
             notify();
         }
-     
+
     }
-    const orderItem = items.filter(item => item.quantity < 5);
+    const orderItem = items.filter(item => item.quantity < 4);
     const itemInfo = {
         items,
         orderItem,
         handleDelete,
         formattedDate
     }
-    
+
     return (
         <ItemContext.Provider value={itemInfo}>
             {children}
