@@ -52,7 +52,7 @@ const ItemProvider = ({ children }) => {
         }
 
     }
-    const orderItem = items.filter(item => item.quantity < 4);
+    const orderItem = items.filter(item => item.quantity <= item.minium);
     const itemInfo = {
         items,
         orderItem,

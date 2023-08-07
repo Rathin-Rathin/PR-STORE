@@ -9,9 +9,10 @@ const AddItems = () => {
         const name = from.name.value;
         const photo = from.photo.value;
         const quantity = parseInt(from.quantity.value);
+        const minium = parseInt(from.minium.value);
         const type = from.type.value;
         const items = {
-            name, photo, quantity, type
+            name, photo, quantity, type,minium
         }
         fetch(`https://pr-store-server.vercel.app/addItem`, {
             method: 'POST',
@@ -49,12 +50,17 @@ const AddItems = () => {
                     <input className="border  border-blue-600  rounded shadow-md outline-none my-2 p-2 w-full" type="number" min="0" placeholder="How many quantity" name="quantity" id="quantity" required />
                 </div>
                 <div>
+                    <p>Minimum quantity for alert<span className="text-rose-600 text-lg">*</span></p>
+                    <input className="border  border-blue-600 rounded shadow-md  outline-none my-2 p-2 w-full" type="number" min='0' placeholder="Minimum quantity" name="minium" id="minium" required />
+                </div>
+
+                <div>
                     <p>Product type<span className="text-rose-600 text-lg">*</span></p>
                     <input className="border  border-blue-600 rounded shadow-md  outline-none my-2 p-2 w-full" type="text" placeholder="( Kg,pcs )" name="type" id="type" required />
                 </div>
-            </div>
-            <div className="w-full ">
-                <input className="border text-white font-semibold bg-blue-600 rounded shadow-md  outline-none my-2 px-3 py-1 cursor-pointer" type="submit" value="Add Item" />
+                <div className=" md:mt-6">
+                    <input className="w-full border text-white font-semibold bg-blue-600 rounded shadow-md  outline-none my-2 px-3 p-2 cursor-pointer" type="submit" value="Add Item" />
+                </div>
             </div>
         </form>
     );

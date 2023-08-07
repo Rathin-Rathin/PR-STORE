@@ -7,10 +7,9 @@
       padding: 20px;
       border: 1px solid #ccc;
     }
-    h1 {
+    h1,tr {
       font-size: 20px;
     }
-  
     p {
       font-size: 14px;
     }
