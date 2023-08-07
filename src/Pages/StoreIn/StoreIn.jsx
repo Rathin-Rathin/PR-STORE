@@ -8,7 +8,7 @@ const StoreIn = () => {
     const [product, setProduct] = useState('');
     const [inHistory, setInHistory] = useState();
 
-    const { items, handleDelete, formattedDate } = useContext(ItemContext);
+    const { items, handleDelete, formattedDate,orderItem } = useContext(ItemContext);
 
     const searchItem = items?.find(data => data.name === product);
     const itemName = searchItem?.name;
